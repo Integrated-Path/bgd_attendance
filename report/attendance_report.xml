@@ -1,0 +1,62 @@
+<odoo>
+    <data>
+    
+		<template id="report_assets_common_custom_fonts" name="Custom QWeb fonts" inherit_id="web.report_assets_common">
+			<xpath expr="." position="inside">
+            	<link href="/bgd_attendance/static/src/css/style.css" rel="stylesheet" type="text/css"/>
+			</xpath>
+		</template>
+
+        <template id="bgd_attendance.attendance_report">			 
+			<t t-call="web.html_container">
+                <div class="article" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id" t-att-data-oe-lang="o and o.env.context.get('lang')">
+                	<table class="table table-sm o_main_table" style="float: right; border: solid 1px black !important; border-collapse: collapse; width: 100%">
+						<style>
+							td, th, table{
+								border: 1px solid black !important;
+								text-align: center;
+							}
+						</style>
+						
+						<thead>
+							<tr>
+								<th colspan="12" style="height: 40px; font-weight: bold;" class="footer_text">قسم الصيانة</th>
+							</tr>
+							<tr>
+								<th class="footer_text" style="font-weight: bold;">الخروج</th>
+								<th class="footer_text" style="font-weight: bold;">الدخول</th>
+								<th class="footer_text" style="font-weight: bold;">ساعات العمل</th>
+								<th class="footer_text" style="font-weight: bold;">الاختصاص</th>
+								<th class="footer_text" style="font-weight: bold;">الاسم</th>
+								<th class="footer_text" style="font-weight: bold;">ت</th>
+							</tr>
+						</thead>
+						<tbody>
+							<t t-set="i" t-value="1"/>
+							<t t-foreach="docs" t-as="line">
+									<tr>
+										<td class="footer_text"><p t-field="line.convert_time()"/></td>
+										<td class="footer_text"><p t-field="line.check_in"/></td>
+										<td class="footer_text"><p widget="float_time" t-field="line.worked_hours"/></td>
+										<td class="footer_text"><p t-field="line.employee_id.job_title"/></td>
+										<td class="footer_text"><p t-field="line.employee_id"/></td>
+										<td class="footer_text"><span t-esc="i"/></td>
+										<t t-set="i" t-value="i+1"/>
+									</tr>
+								</t>
+						</tbody>
+					</table>
+				</div>
+			</t>
+		</template>
+
+        <report id="bgd_attendance_report"
+                string="Attendance Report"
+                model="hr.attendance"
+                report_type="qweb-pdf"
+                name="bgd_attendance.attendance_report"
+                file="bgd_attendance.attendance_report"
+        />
+    
+    </data>
+</odoo>

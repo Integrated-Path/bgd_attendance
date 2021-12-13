@@ -1,0 +1,60 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+<!--
+    <record model="ir.ui.view" id="bgd_attendance.list">
+      <field name="name">bgd_attendance list</field>
+      <field name="model">bgd_attendance.bgd_attendance</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+-->
+
+    <!-- actions opening views on models -->
+<!--
+    <record model="ir.actions.act_window" id="bgd_attendance.action_window">
+      <field name="name">bgd_attendance window</field>
+      <field name="res_model">bgd_attendance.bgd_attendance</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+-->
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="bgd_attendance.action_server">
+      <field name="name">bgd_attendance server</field>
+      <field name="model_id" ref="model_bgd_attendance_bgd_attendance"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+<!--
+    <menuitem name="bgd_attendance" id="bgd_attendance.menu_root"/>
+-->
+    <!-- menu categories -->
+<!--
+    <menuitem name="Menu 1" id="bgd_attendance.menu_1" parent="bgd_attendance.menu_root"/>
+    <menuitem name="Menu 2" id="bgd_attendance.menu_2" parent="bgd_attendance.menu_root"/>
+-->
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="bgd_attendance.menu_1_list" parent="bgd_attendance.menu_1"
+              action="bgd_attendance.action_window"/>
+    <menuitem name="Server to list" id="bgd_attendance" parent="bgd_attendance.menu_2"
+              action="bgd_attendance.action_server"/>
+-->
+  </data>
+</odoo>
