@@ -35,9 +35,9 @@
 							<t t-set="i" t-value="1"/>
 							<t t-foreach="docs" t-as="line">
 									<tr>
-										<td class="footer_text"><p t-field="line.convert_time()"/></td>
-										<td class="footer_text"><p t-field="line.check_in"/></td>
-										<td class="footer_text"><p widget="float_time" t-field="line.worked_hours"/></td>
+										<td class="footer_text"><p t-esc="line.check_out.strftime('%H:%M')"/></td>
+										<td class="footer_text"><p t-esc="line.check_in.strftime('%H:%M')"/></td>
+										<td class="footer_text"><p t-field="line.worked_hours" t-options='{"widget": "float_time"}'/></td>
 										<td class="footer_text"><p t-field="line.employee_id.job_title"/></td>
 										<td class="footer_text"><p t-field="line.employee_id"/></td>
 										<td class="footer_text"><span t-esc="i"/></td>
