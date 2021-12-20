@@ -1,0 +1,9 @@
+<odoo>
+	<data>
+		<template id="report_assets_common_custom_fonts" name="Custom QWeb fonts" inherit_id="web.report_assets_common">
+			<xpath expr="." position="inside">
+            	<link href="/bgd_attendance/static/src/css/style.css" rel="stylesheet" type="text/css"/>
+			</xpath>
+		</template>
+	</data>
+</odoo>

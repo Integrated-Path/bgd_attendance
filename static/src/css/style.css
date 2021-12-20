@@ -1,0 +1,12 @@
+@font-face {
+    font-family: 'Tajawal';
+    src: local('Tajawal'), local('Tajawal'), url(/bgd_attendance/static/src/fonts/Tajawal-Regular.ttf) format('truetype');
+}
+         
+  
+.footer_text
+{
+    font-family: 'Tajawal' !important;
+    font-style: normal;
+    font-weight: 400;
+}

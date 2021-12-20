@@ -1,7 +1,7 @@
+
 <odoo>
-    <data>
-    
-        <template id="bgd_attendance.attendance_report">
+	<data>
+		<template id="bgd_attendance.to_attendance_device_report_template">
 			<t t-call="web.html_container">
                 <div class="article" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id" t-att-data-oe-lang="o and o.env.context.get('lang')">
                 	<table class="table table-sm o_main_table" style="float: right; border: solid 1px black !important; border-collapse: collapse; width: 100%">
@@ -14,7 +14,7 @@
 						
 						<thead>
 							<tr>
-								<th colspan="12" style="height: 40px; font-weight: bold;" class="footer_text">قسم الصيانة</th>
+								<th colspan="12" style="height: 40px; font-weight: bold;" class="footer_text"><span t-field="docs[0].department_id"/></th>
 							</tr>
 							<tr>
 								<th class="footer_text" style="font-weight: bold;">الخروج</th>
@@ -27,13 +27,13 @@
 						</thead>
 						<tbody>
 							<t t-set="i" t-value="1"/>
-							<t t-foreach="docs" t-as="line">
+							<t t-foreach="docs.data_format()" t-as="line">
 									<tr>
-										<td class="footer_text"><p t-if="line.check_out" t-esc="line.check_out.strftime('%H:%M')"/></td>
-										<td class="footer_text"><p t-if="line.check_in" t-esc="line.check_in.strftime('%H:%M')"/></td>
-										<td class="footer_text"><p t-field="line.worked_hours" t-options='{"widget": "float_time"}'/></td>
-										<td class="footer_text"><p t-field="line.employee_id.job_title"/></td>
-										<td class="footer_text"><p t-field="line.employee_id"/></td>
+										<td class="footer_text"><p t-if="line['check-out-date']" t-esc="line['check-out-date'].strftime('%Y/%m/%d - %H:%M')"/></td>
+										<td class="footer_text"><p t-esc="line['check-in-date'].strftime('%Y/%m/%d - %H:%M')"/></td>
+										<td class="footer_text"><p t-if="line['work-time']" t-esc="line['work-time'].seconds / 3600" t-options='{"widget": "float_time"}'/></td>
+										<td class="footer_text"><p t-esc="line['employee'].job_title"/></td>
+										<td class="footer_text"><p t-esc="line['employee'].name"/></td>
 										<td class="footer_text"><span t-esc="i"/></td>
 										<t t-set="i" t-value="i+1"/>
 									</tr>
@@ -43,14 +43,13 @@
 				</div>
 			</t>
 		</template>
-
-        <report id="bgd_attendance_report"
-                string="Attendance Report"
-                model="hr.attendance"
-                report_type="qweb-pdf"
-                name="bgd_attendance.attendance_report"
-                file="bgd_attendance.attendance_report"
-        />
-    
-    </data>
+		
+		<report id="to_attendance_device_report_action"
+		string="Attendance Report"
+		model="user.attendance"
+		report_type="qweb-pdf"
+		name="bgd_attendance.to_attendance_device_report_template"
+		file="bgd_attendance.to_attendance_device_report_template"
+		/>
+	</data>
 </odoo>
